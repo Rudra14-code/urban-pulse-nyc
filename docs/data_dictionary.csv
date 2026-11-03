@@ -1,0 +1,44 @@
+field,source,meaning,dtype,missing_count,missing_pct,distinct_values,transformation,analytical_use
+unique_key,API,Unique ID of the 311 request,Int64,0,0.0,119202,Trimmed spaces; blank -> missing,Counting distinct requests; primary key
+created_date,API,When the request was created,datetime64[us],0,0.0,117963,Parsed text to datetime; unparseable -> missing,"Trends, filters, durations"
+closed_date,API,When the request was closed (blank = not closed yet),datetime64[us],5628,4.72,105369,Parsed text to datetime; unparseable -> missing,Closure and durations
+due_date,API,Date the agency was expected to respond by (sparsely filled),datetime64[us],118790,99.65,367,Parsed text to datetime; unparseable -> missing,Context / drill-down
+resolution_action_updated_date,API,Last time the resolution was updated,datetime64[us],2026,1.7,101085,Parsed text to datetime; unparseable -> missing,Context / drill-down
+agency,API,Short code of the agency handling the request,str,0,0.0,16,Trimmed spaces; blank -> missing,Workload by agency
+agency_name,API,Full agency name,str,0,0.0,16,Trimmed spaces; blank -> missing,Context / drill-down
+complaint_type,API,Top-level complaint category,str,0,0.0,170,Trimmed spaces; blank -> missing,"Top categories, filters"
+descriptor,API,More detailed sub-category of the complaint,str,2261,1.9,789,Trimmed spaces; blank -> missing,Context / drill-down
+location_type,API,"Type of place (street, residential building, etc.)",str,14119,11.84,119,Trimmed spaces; blank -> missing,Context / drill-down
+status,API,"Current recorded status (Closed, Open, In Progress...)",str,0,0.0,7,Trimmed spaces; blank -> missing,Status distribution
+resolution_description,API,Agency's text on what was done,str,3097,2.6,558,Trimmed spaces; blank -> missing,Context / drill-down
+borough,API,NYC borough of the incident,str,0,0.0,6,Trimmed spaces; blank -> missing,"Borough comparison, filters"
+incident_zip,API,ZIP code of the incident,str,1063,0.89,223,Trimmed spaces; blank -> missing,Context / drill-down
+city,API,City/neighbourhood name entered,str,6255,5.25,50,Trimmed spaces; blank -> missing,Context / drill-down
+incident_address,API,Street address of the incident,str,4377,3.67,70098,Trimmed spaces; blank -> missing,Context / drill-down
+street_name,API,Street name,str,4378,3.67,6295,Trimmed spaces; blank -> missing,Context / drill-down
+address_type,API,"How the location was given (address, intersection...)",str,659,0.55,5,Trimmed spaces; blank -> missing,Context / drill-down
+community_board,API,Community board area,str,0,0.0,76,Trimmed spaces; blank -> missing,Context / drill-down
+council_district,API,City council district,str,3000,2.52,51,Trimmed spaces; blank -> missing,Context / drill-down
+police_precinct,API,Police precinct,str,0,0.0,78,Trimmed spaces; blank -> missing,Context / drill-down
+open_data_channel_type,API,"How the request came in (phone, online, mobile...)",str,0,0.0,5,Trimmed spaces; blank -> missing,Context / drill-down
+park_borough,API,Borough per the parks field,str,0,0.0,6,Trimmed spaces; blank -> missing,Context / drill-down
+latitude,API,Latitude of the incident (WGS84),float64,2466,2.07,73835,Converted to number,Map
+longitude,API,Longitude of the incident (WGS84),float64,2466,2.07,73836,Converted to number,Map
+flag_closed_before_created,derived,Closed date earlier than created date (impossible),int64,0,0.0,2,Computed in clean.py,Context / drill-down
+flag_zero_duration,derived,Closed at the exact same second it was created,int64,0,0.0,2,Computed in clean.py,Context / drill-down
+flag_future_date,derived,A date later than the extraction time,int64,0,0.0,1,Computed in clean.py,Context / drill-down
+flag_status_closed_no_date,derived,Status says CLOSED but no closed_date,int64,0,0.0,1,Computed in clean.py,Context / drill-down
+flag_date_but_not_closed,derived,Has closed_date but status is not CLOSED,int64,0,0.0,2,Computed in clean.py,Context / drill-down
+flag_midnight_created,derived,Created exactly 00:00:00 (likely date-only entry; distorts hour analysis),int64,0,0.0,2,Computed in clean.py,Context / drill-down
+flag_missing_coords,derived,Latitude or longitude missing,int64,0,0.0,2,Computed in clean.py,Context / drill-down
+flag_coords_outside_nyc,derived,Coordinates outside the NYC bounding box,int64,0,0.0,1,Computed in clean.py,Context / drill-down
+flag_unspecified_borough,derived,Borough missing or 'UNSPECIFIED',int64,0,0.0,2,Computed in clean.py,Context / drill-down
+is_closed,derived,"1 if a closed_date is recorded, else 0",int64,0,0.0,2,Computed in clean.py,Closure-rate KPI
+resolution_hours,derived,Hours from created to closed; only for valid closed rows,float64,5661,4.75,55462,Computed in clean.py,"Duration statistics, KPIs"
+created_year,derived,Year of created_date,int32,0,0.0,2,Computed in clean.py,Context / drill-down
+created_month,derived,Year-month of created_date (YYYY-MM),str,0,0.0,12,Computed in clean.py,Monthly trend
+created_weekday,derived,Weekday name of created_date,str,0,0.0,7,Computed in clean.py,Weekday x hour heatmap
+created_weekday_num,derived,Weekday number (Monday=0),int32,0,0.0,7,Computed in clean.py,Context / drill-down
+created_hour,derived,Hour of day of created_date (0-23),int32,0,0.0,24,Computed in clean.py,Weekday x hour heatmap
+res_outlier_iqr,derived,1 if resolution_hours is outside the 1.5xIQR fences,float64,5661,4.75,2,Computed in clean.py,Outlier investigation
+over_72h,derived,"1 if resolution_hours > 72 (project cut-off, not an official SLA)",float64,5661,4.75,2,Computed in clean.py,Over-72h KPI

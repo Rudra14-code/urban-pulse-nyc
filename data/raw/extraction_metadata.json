@@ -1,0 +1,224 @@
+{
+  "source": "https://data.cityofnewyork.us/resource/erm2-nwe9.json",
+  "dataset": "311 Service Requests from 2020 to Present (erm2-nwe9)",
+  "extracted_at_utc": "2026-11-03T07:35:43+00:00",
+  "window_start": "2025-11-01",
+  "window_end_exclusive": "2026-11-01",
+  "sampling": "systematic: unique_key ending in ['07', '37', '67'] (~3%)",
+  "fields": [
+    "unique_key",
+    "created_date",
+    "closed_date",
+    "due_date",
+    "resolution_action_updated_date",
+    "agency",
+    "agency_name",
+    "complaint_type",
+    "descriptor",
+    "location_type",
+    "status",
+    "resolution_description",
+    "borough",
+    "incident_zip",
+    "city",
+    "incident_address",
+    "street_name",
+    "address_type",
+    "community_board",
+    "council_district",
+    "police_precinct",
+    "open_data_channel_type",
+    "park_borough",
+    "latitude",
+    "longitude"
+  ],
+  "page_size": 5000,
+  "rows_extracted": 119202,
+  "per_month_suffix": [
+    {
+      "month": "2025-11",
+      "suffix": "07",
+      "rows": 3055
+    },
+    {
+      "month": "2025-11",
+      "suffix": "37",
+      "rows": 3049
+    },
+    {
+      "month": "2025-11",
+      "suffix": "67",
+      "rows": 3048
+    },
+    {
+      "month": "2025-12",
+      "suffix": "07",
+      "rows": 3321
+    },
+    {
+      "month": "2025-12",
+      "suffix": "37",
+      "rows": 3320
+    },
+    {
+      "month": "2025-12",
+      "suffix": "67",
+      "rows": 3321
+    },
+    {
+      "month": "2026-01",
+      "suffix": "07",
+      "rows": 3490
+    },
+    {
+      "month": "2026-01",
+      "suffix": "37",
+      "rows": 3470
+    },
+    {
+      "month": "2026-01",
+      "suffix": "67",
+      "rows": 3484
+    },
+    {
+      "month": "2026-02",
+      "suffix": "07",
+      "rows": 3352
+    },
+    {
+      "month": "2026-02",
+      "suffix": "37",
+      "rows": 3339
+    },
+    {
+      "month": "2026-02",
+      "suffix": "67",
+      "rows": 3340
+    },
+    {
+      "month": "2026-03",
+      "suffix": "07",
+      "rows": 3423
+    },
+    {
+      "month": "2026-03",
+      "suffix": "37",
+      "rows": 3425
+    },
+    {
+      "month": "2026-03",
+      "suffix": "67",
+      "rows": 3433
+    },
+    {
+      "month": "2026-04",
+      "suffix": "07",
+      "rows": 3033
+    },
+    {
+      "month": "2026-04",
+      "suffix": "37",
+      "rows": 3026
+    },
+    {
+      "month": "2026-04",
+      "suffix": "67",
+      "rows": 3026
+    },
+    {
+      "month": "2026-05",
+      "suffix": "07",
+      "rows": 3310
+    },
+    {
+      "month": "2026-05",
+      "suffix": "37",
+      "rows": 3327
+    },
+    {
+      "month": "2026-05",
+      "suffix": "67",
+      "rows": 3324
+    },
+    {
+      "month": "2026-06",
+      "suffix": "07",
+      "rows": 3354
+    },
+    {
+      "month": "2026-06",
+      "suffix": "37",
+      "rows": 3342
+    },
+    {
+      "month": "2026-06",
+      "suffix": "67",
+      "rows": 3355
+    },
+    {
+      "month": "2026-07",
+      "suffix": "07",
+      "rows": 3433
+    },
+    {
+      "month": "2026-07",
+      "suffix": "37",
+      "rows": 3440
+    },
+    {
+      "month": "2026-07",
+      "suffix": "67",
+      "rows": 3409
+    },
+    {
+      "month": "2026-08",
+      "suffix": "07",
+      "rows": 3287
+    },
+    {
+      "month": "2026-08",
+      "suffix": "37",
+      "rows": 3272
+    },
+    {
+      "month": "2026-08",
+      "suffix": "67",
+      "rows": 3284
+    },
+    {
+      "month": "2026-09",
+      "suffix": "07",
+      "rows": 3233
+    },
+    {
+      "month": "2026-09",
+      "suffix": "37",
+      "rows": 3230
+    },
+    {
+      "month": "2026-09",
+      "suffix": "67",
+      "rows": 3249
+    },
+    {
+      "month": "2026-10",
+      "suffix": "07",
+      "rows": 3453
+    },
+    {
+      "month": "2026-10",
+      "suffix": "37",
+      "rows": 3478
+    },
+    {
+      "month": "2026-10",
+      "suffix": "67",
+      "rows": 3467
+    }
+  ],
+  "limitations": [
+    "Data changes daily; re-running gives slightly different results.",
+    "Recent months have more open requests because they had less time to close.",
+    "Sample is ~3% of requests, not the full population."
+  ]
+}
